@@ -28,5 +28,9 @@ onMounted(() => {
 onUnmounted(() => {
   vectorSource.removeFeature(line)
 })
+
+defineExpose({
+  line,
+})
 </script>
 <template></template>
