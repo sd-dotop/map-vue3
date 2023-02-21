@@ -78,9 +78,11 @@ app.use(Map)
 
 #### props
 
-| 名称        | 类型            | 默认值 | 说明 |
-| ----------- | --------------- | ------ | ---- |
-| coordinates | Array.< Array > | -      | 坐标 |
+| 名称         | 类型            | 默认值    | 说明 |
+| ------------ | --------------- | --------- | ---- |
+| coordinates  | Array.< Array > | -         | 坐标 |
+| stroke-color | String          | '#0000ff' | 颜色 |
+| stroke-width | Number          | 3         | 线宽 |
 
 #### expose
 
@@ -92,7 +94,7 @@ app.use(Map)
 
 ### Point
 
-矢量线要素
+矢量点要素
 
 ```
 <Point />
@@ -100,9 +102,13 @@ app.use(Map)
 
 #### props
 
-| 名称        | 类型  | 默认值 | 说明 |
-| ----------- | ----- | ------ | ---- |
-| coordinates | Array | -      | 坐标 |
+| 名称         | 类型   | 默认值    | 说明       |
+| ------------ | ------ | --------- | ---------- |
+| coordinates  | Array  | -         | 坐标       |
+| radius       | Number | 10        | 点大小     |
+| fill-color   | String | '#ff0000' | 点颜色     |
+| stroke-color | String | '#ffffff' | 外边线颜色 |
+| stroke-width | Number | 2         | 外边线宽度 |
 
 #### expose
 
