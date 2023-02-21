@@ -5,7 +5,7 @@
 ## 安装
 
 ```console
-npm install http://122.14.216.105:8090/mengxi/map-vue3.git
+npm install git+http://122.14.216.105:8090/mengxi/map-vue3.git
 ```
 
 main.js 中
