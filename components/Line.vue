@@ -8,15 +8,25 @@ const props = defineProps({
   coordinates: {
     type: Array,
   },
+  strokeColor: {
+    type: String,
+    default: '#0000ff',
+  },
+  strokeWidth: {
+    type: Number,
+    default: 3,
+  },
 })
 
+const { coordinates, strokeColor, strokeWidth } = props
+
 const vectorSource = inject('vectorSource')
-const line = new Feature(new LineString(props.coordinates))
+const line = new Feature(new LineString(coordinates))
 line.setStyle(
   new Style({
     stroke: new Stroke({
-      color: 'blue',
-      width: 3,
+      color: strokeColor,
+      width: strokeWidth,
     }),
   })
 )

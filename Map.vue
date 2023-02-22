@@ -19,6 +19,7 @@ const props = defineProps({
     type: Number,
     default: 10,
   },
+  singleClick: Function,
 })
 
 const view = new View({
@@ -45,12 +46,25 @@ function setCenter(lnglat) {
   view.setCenter(lnglat)
 }
 
+function getFeatureByPixel(pixel) {
+  return new Promise((resolve) => {
+    map.forEachFeatureAtPixel(pixel, (feature) => {
+      resolve(feature)
+    })
+  })
+}
+
+if (props.singleClick) {
+  map.on('singleclick', props.singleClick)
+}
+
 defineExpose({
   setCenter,
   map,
   view,
   vecLayer,
   imgLayer,
+  getFeatureByPixel,
 })
 </script>
 <style>
