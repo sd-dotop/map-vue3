@@ -6,6 +6,8 @@ import Point from './components/Point.vue'
 import Icon from './components/Icon.vue'
 import Polygon from './components/Polygon.vue'
 import WMS from './components/WMS.vue'
+import Overlay from './components/Overlay.vue'
+import * as extent from 'ol/extent'
 
 export default {
   install(Vue) {
@@ -16,5 +18,8 @@ export default {
     Vue.component('Icon', Icon)
     Vue.component('Polygon', Polygon)
     Vue.component('WMS', WMS)
+    Vue.component('Overlay', Overlay)
   },
 }
+
+export { extent }
