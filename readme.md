@@ -20,7 +20,7 @@ app.use(Map)
 
 ## 范例
 
-[查看范例](/wikis/home)
+[查看范例](../wikis/home)
 
 ## 组件
 
