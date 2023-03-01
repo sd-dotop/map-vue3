@@ -18,6 +18,10 @@ import Map from 'map-vue3'
 app.use(Map)
 ```
 
+## 范例
+
+[查看范例](/wikis/home)
+
 ## 组件
 
 组件类型分为地图`基础底图`，`图层`，`要素`
