@@ -48,7 +48,6 @@ export function measure(map,type) {
     helpTooltipElement.innerHTML = helpMsg;
     helpTooltip.setPosition(ev.coordinate);
     helpTooltipElement.classList.remove('hidden')
-
   })
 
   map.getViewport().addEventListener('mouseout', function () {
@@ -82,9 +81,7 @@ export function measure(map,type) {
   // 开始坚挺绘制
   draw.on('drawstart', (evt) => {
     feature = evt.feature;
-
     let tooltipCoord = evt.coordinate;
-
     listener = feature.getGeometry().on('change', function (evt) {
       const geom = evt.target;
       let output;
@@ -132,7 +129,6 @@ export function measure(map,type) {
     }
     return output;
   };
-
   createHelpTooltip(map)
   createMeasureTooltip(map)
   map.addLayer(layer)
@@ -150,6 +146,10 @@ export function cancelMeasure(map) {
   }
   drawLayers = []
   drawElements = []
+  feature = null;
+  if (helpTooltipElement && helpTooltipElement.parentNode) {
+    helpTooltipElement.parentNode.removeChild(helpTooltipElement);
+  }
   map.removeInteraction(draw)
   unByKey(mapMouseMove);
 }
@@ -172,7 +172,7 @@ function createMeasureTooltip(map) {
 }
 
 function createHelpTooltip(map) {
-  if (helpTooltipElement) {
+  if (helpTooltipElement && helpTooltipElement.parentNode) {
     helpTooltipElement.parentNode.removeChild(helpTooltipElement);
   }
   helpTooltipElement = document.createElement('div');
