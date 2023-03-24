@@ -9,7 +9,7 @@ import Map from 'ol/Map'
 import View from 'ol/View'
 import projection from './helper/projection'
 import { vecLayer, imgLayer } from './helper/baselayer'
-// import { measure, cancelMeasure } from './helper/measure'
+import { measure, cancelMeasure } from './helper/measure'
 
 const props = defineProps({
   center: {
@@ -64,8 +64,8 @@ defineExpose({
   vecLayer,
   imgLayer,
   getFeatureByPixel,
-  // measure,
-  // cancelMeasure
+  measure,
+  cancelMeasure
 })
 </script>
 <style>
