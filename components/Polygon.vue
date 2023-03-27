@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs, inject, onMounted, onUnmounted } from 'vue'
+import { toRefs, inject, onMounted, onUnmounted, watchEffect } from 'vue'
 import Feature from 'ol/Feature'
 import Polygon from 'ol/geom/Polygon'
 import { Style, Fill, Stroke } from 'ol/style'
