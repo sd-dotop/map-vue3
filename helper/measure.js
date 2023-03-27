@@ -4,6 +4,8 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style'
 import { LineString, Polygon } from 'ol/geom'
 // import { Vector as VectorSource } from 'ol/source'
 // import { Vector as VectorLayer } from 'ol/layer'
+import VectorSource from 'ol/source/Vector'
+import VectorLayer from 'ol/layer/Vector'
 import { getArea, getLength } from 'ol/sphere'
 import { unByKey } from 'ol/Observable'
 // import {transform} from 'ol/proj';
