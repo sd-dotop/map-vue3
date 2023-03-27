@@ -1,5 +1,5 @@
 <script setup>
-import { inject, onMounted, onUnmounted } from 'vue'
+import { toRefs, inject, onMounted, onUnmounted } from 'vue'
 import Feature from 'ol/Feature'
 import LineString from 'ol/geom/LineString'
 import { Style, Stroke } from 'ol/style'
@@ -18,18 +18,22 @@ const props = defineProps({
   },
 })
 
-const { coordinates, strokeColor, strokeWidth } = props
+const { coordinates, strokeColor, strokeWidth } = toRefs(props)
 
 const vectorSource = inject('vectorSource')
-const line = new Feature(new LineString(coordinates))
+const line = new Feature(new LineString(coordinates.value))
 line.setStyle(
   new Style({
     stroke: new Stroke({
-      color: strokeColor,
-      width: strokeWidth,
+      color: strokeColor.value,
+      width: strokeWidth.value,
     }),
   })
 )
+
+watchEffect(() => {
+  line.setGeometry(new LineString(coordinates.value))
+})
 
 onMounted(() => {
   vectorSource.addFeatures([line])

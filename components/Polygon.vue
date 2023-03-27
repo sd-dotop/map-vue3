@@ -1,5 +1,5 @@
 <script setup>
-import { inject, onMounted, onUnmounted } from 'vue'
+import { toRefs, inject, onMounted, onUnmounted } from 'vue'
 import Feature from 'ol/Feature'
 import Polygon from 'ol/geom/Polygon'
 import { Style, Fill, Stroke } from 'ol/style'
@@ -20,23 +20,27 @@ const props = defineProps({
   },
 })
 
-const { coordinates, strokeColor, strokeWidth, fillColor } = props
+const { coordinates, strokeColor, strokeWidth, fillColor } = toRefs(props)
 
 const vectorSource = inject('vectorSource')
 
-const polygon = new Feature(new Polygon(coordinates))
+const polygon = new Feature(new Polygon(coordinates.value))
 
 polygon.setStyle(
   new Style({
     stroke: new Stroke({
-      color: strokeColor,
-      width: strokeWidth,
+      color: strokeColor.value,
+      width: strokeWidth.value,
     }),
     fill: new Fill({
-      color: fillColor,
+      color: fillColor.value,
     }),
   })
 )
+
+watchEffect(() => {
+  polygon.setGeometry(new Polygon(coordinates.value))
+})
 
 onMounted(() => {
   vectorSource.addFeatures([polygon])
