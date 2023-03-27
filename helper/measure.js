@@ -1,5 +1,5 @@
-// import Draw from 'ol/interaction/Draw'
-// import Overlay from 'ol/Overlay'
+import Draw from 'ol/interaction/Draw'
+import Overlay from 'ol/Overlay'
 // import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style'
 // import { LineString, Polygon } from 'ol/geom'
 // import { Vector as VectorSource } from 'ol/source'
