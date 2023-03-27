@@ -5,7 +5,7 @@ import { LineString, Polygon } from 'ol/geom'
 import { Vector as VectorSource } from 'ol/source'
 import { Vector as VectorLayer } from 'ol/layer'
 import { getArea, getLength } from 'ol/sphere'
-import { unByKey } from 'ol/Observable'
+// import { unByKey } from 'ol/Observable'
 // import {transform} from 'ol/proj';
 
 var helpTooltipElement = null
@@ -104,7 +104,7 @@ export function measure(map, type) {
     feature = null
     measureTooltipElement = null
     createMeasureTooltip(map)
-    unByKey(listener)
+    // unByKey(listener)
   })
 
   // 格式化长度
@@ -151,7 +151,7 @@ export function cancelMeasure(map) {
     helpTooltipElement.parentNode.removeChild(helpTooltipElement)
   }
   map.removeInteraction(draw)
-  unByKey(mapMouseMove)
+  // unByKey(mapMouseMove)
 }
 
 function createMeasureTooltip(map) {
