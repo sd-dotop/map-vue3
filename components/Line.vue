@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs, inject, onMounted, onUnmounted } from 'vue'
+import { toRefs, inject, onMounted, onUnmounted, watchEffect } from 'vue'
 import Feature from 'ol/Feature'
 import LineString from 'ol/geom/LineString'
 import { Style, Stroke } from 'ol/style'
