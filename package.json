@@ -1,6 +1,6 @@
 {
     "name": "map-vue3",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "openlayer for vue3",
     "main": "index.js",
     "scripts": {

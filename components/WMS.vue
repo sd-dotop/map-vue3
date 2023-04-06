@@ -31,12 +31,12 @@ onUnmounted(() => {
   map.removeLayer(layer)
 })
 
-function getFatureInfoByCoodinate(coordinate) {
+function getFatureInfoByCoodinate (coordinate) {
   return new Promise((resolve, reject) => {
     const url = wms.getFeatureInfoUrl(coordinate, map.getView().getResolution(), params.srs || params.SRS, {
-      INFO_FORMAT: 'application/json',
+      INFO_FORMAT: params.info_format || params.INFO_FORMAT || 'application/json',
       QUERY_LAYERS: params.LAYERS || params.layers,
-      FORMAT: 'application/json',
+      FORMAT: params.format || params.FORMAT || 'application/json',
     })
     axios
       .get(url)
