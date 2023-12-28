@@ -10,7 +10,8 @@ import View from 'ol/View'
 import projection from './helper/projection'
 import { vecLayer, imgLayer } from './helper/baselayer'
 import { measure, cancelMeasure } from './helper/measure'
-
+import { drawPolygon } from './helper/drawPolygon'
+// console.log('暗示健康的好就看')
 const props = defineProps({
   center: {
     type: Array,
@@ -42,10 +43,10 @@ onMounted(() => {
 
 provide('map', map)
 
-function setCenter (lnglat) {
+function setCenter(lnglat) {
   view.setCenter(lnglat)
 }
-function getFeatureByPixel (pixel) {
+function getFeatureByPixel(pixel) {
   return new Promise((resolve) => {
     map.forEachFeatureAtPixel(pixel, (feature) => {
       resolve(feature)
@@ -65,7 +66,8 @@ defineExpose({
   imgLayer,
   getFeatureByPixel,
   measure,
-  cancelMeasure
+  cancelMeasure,
+  drawPolygon,
 })
 </script>
 <style>
@@ -115,4 +117,3 @@ defineExpose({
   border-top-color: #ffcc33;
 }
 </style>
-
