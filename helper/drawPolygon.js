@@ -9,8 +9,8 @@ import { Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style'
 // import { Polygon } from 'ol/geom';
 
-let draw = null
-let source = null
+var draw = null
+var source = null
 export function drawPolygon(map,color,color_,callback) {
   // if(source){
   //  source.clear()
