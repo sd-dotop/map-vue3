@@ -1,13 +1,13 @@
-import Map from 'ol/Map';
-import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import Overlay from 'ol/Overlay'
-import { Draw, Modify, Snap } from 'ol/interaction';
+// import Map from 'ol/Map';
+// import View from 'ol/View';
+// import TileLayer from 'ol/layer/Tile';
+// import OSM from 'ol/source/OSM';
+// import Overlay from 'ol/Overlay'
+import { Draw } from 'ol/interaction';
 import { Vector as VectorLayer } from 'ol/layer';
 import { Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style'
-import { Polygon } from 'ol/geom';
+// import { Polygon } from 'ol/geom';
 
 let draw = null
 let source = null
