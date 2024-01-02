@@ -3,14 +3,14 @@
 // import TileLayer from 'ol/layer/Tile';
 // import OSM from 'ol/source/OSM';
 // import Overlay from 'ol/Overlay'
-import { Draw } from 'ol/interaction';
-import { Vector as VectorLayer } from 'ol/layer';
-import { Vector as VectorSource } from 'ol/source';
-import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style'
+// import { Draw } from 'ol/interaction';
+// import { Vector as VectorLayer } from 'ol/layer';
+// import { Vector as VectorSource } from 'ol/source';
+// import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style'
 // import { Polygon } from 'ol/geom';
 
-var draw = null
-var source = null
+// var draw = null
+// var source = null
 export function drawPolygon(map,color,color_,callback) {
   // if(source){
   //  source.clear()
