@@ -10,7 +10,7 @@ import View from 'ol/View'
 import projection from './helper/projection'
 import { vecLayer, imgLayer } from './helper/baselayer'
 import { measure, cancelMeasure } from './helper/measure'
-import { drawPolygon } from './helper/drawPolygon'
+// import { drawPolygon } from './helper/drawPolygon'
 const props = defineProps({
   center: {
     type: Array,
@@ -66,7 +66,7 @@ defineExpose({
   getFeatureByPixel,
   measure,
   cancelMeasure,
-  drawPolygon,
+  // drawPolygon,
 })
 </script>
 <style>
