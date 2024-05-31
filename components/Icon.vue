@@ -8,14 +8,16 @@ import imgUrl from '../assets/Marker.svg'
 const props = defineProps({
   coordinate: Array,
   src: String,
-  iconText: String
+  iconText: String,
+  infoObj: Object
 })
 
-const { coordinate, src, iconText } = toRefs(props)
-
+const { coordinate, src, iconText, infoObj } = toRefs(props)
+console.log(infoObj)
 const vectorSource = inject('vectorSource')
 const icon = new Feature({
   geometry: new Point(coordinate.value),
+  infoObj: infoObj || ''
 })
 
 icon.setStyle(
