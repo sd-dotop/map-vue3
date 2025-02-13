@@ -5,9 +5,9 @@
 ## 安装
 
 ```console
-npm install git+http://122.14.216.105:8090/mengxi/map-vue3.git
-pnpm install git+http://122.14.216.105:8090/mengxi/map-vue3.git
-yarn add git+http://122.14.216.105:8090/mengxi/map-vue3.git
+npm install git+https://github.com/sd-dotop/map-vue3
+pnpm install git+https://github.com/sd-dotop/map-vue3
+yarn add git+https://github.com/sd-dotop/map-vue3
 ```
 
 main.js 中
