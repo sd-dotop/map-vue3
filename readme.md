@@ -194,3 +194,34 @@ WMS 瓦片服务图层
 | wms                      | SourceWMS | -      | wms 源对象                                              |
 | layer                    | TileLayer | -      | 瓦片图层对象                                            |
 | getFatureInfoByCoodinate | Promise   | -      | 通过坐标获取 wms 要素的服务,返回体为 wms 服务返回的内容 |
+
+### WMTS
+
+WMTS 瓦片服务图层
+
+```
+<WMTS />
+```
+
+#### props
+
+| 名称   | 类型   | 默认值 | 说明         |
+| ------ | ------ | ------ | ------------ |
+| url    | String | -      | WMTS 服务地址 |
+| layer  | String | -      | 图层标识     |
+| matrixSet  | String | -      | matrixSet     |
+| srs        | String | -      | 坐标系，用于获取 projection     |
+| version    | String | -      | 版本号，default：1.0.0     |
+| format     | String | -      | format，default：image/png     |
+| style      | String | -      | 样式，default：default     |
+| maxZoom    | Number | -      | 最大缩放层级     |
+| prefix     | String | -      | 瓦片 matrixIds 前缀，示例prefix=EPSG:4326, 则 matrixIds值为：`EPSG:4326:0`     |
+
+#### expose
+
+| 名称                     | 类型      | 返回值 | 说明                                                    |
+| ------------------------ | --------- | ------ | ------------------------------------------------------- |
+| wmts                      | SourceWMS | -      | wms 源对象                                              |
+| layer                    | TileLayer | -      | 瓦片图层对象                                            |
+| getFatureInfoByCoodinate | Promise   | -      | 通过坐标获取 wmts 要素的服务, 未实现 |
+
