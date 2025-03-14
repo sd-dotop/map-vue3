@@ -21,6 +21,7 @@ const props = defineProps({
     default: 10,
   },
   singleClick: Function,
+  contextMenu: Function,
 })
 
 const view = new View({
@@ -55,6 +56,9 @@ function getFeatureByPixel(pixel) {
 
 if (props.singleClick) {
   map.on('singleclick', props.singleClick)
+}
+if (props.contextMenu) {
+  map.on('contextmenu', props.contextMenu);
 }
 
 defineExpose({

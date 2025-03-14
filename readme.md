@@ -41,6 +41,7 @@ app.use(Map)
 | center       | Array    | [120, 36] | 地图的默认中心点坐标                      |
 | zoom         | Number   | 10        | 地图的默认缩放级别                        |
 | single-click | Function | -         | 地图单击的绑定函数,返回内容为地图点击事件 |
+| context-menu | Function | -         | 地图右键的绑定函数,返回内容为地图点击事件 |
 
 #### expose
 
