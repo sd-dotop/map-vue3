@@ -6,14 +6,8 @@ import { getWidth, getTopLeft } from 'ol/extent.js'
 import TileLayer from 'ol/layer/Tile'
 import WMTS from 'ol/source/WMTS'
 import WMTSTileGrid from 'ol/tilegrid/WMTS'
-import proj4 from 'proj4';
-import { register } from 'ol/proj/proj4'
 import { get as getProjection } from 'ol/proj'
 import axios from 'axios'
-
-// 注册 4490
-proj4.defs('EPSG:4490', '+proj=longlat +ellps=GRS80 +no_defs');
-register(proj4);
 
 const props = defineProps({
   url: String,
