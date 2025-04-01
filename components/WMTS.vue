@@ -19,9 +19,10 @@ const props = defineProps({
   style: String,
   maxZoom: Number,
   prefix: String, // 瓦片 matrixIds 前缀
+  token: String, // 令牌
 })
 
-const { url, layerName, matrixSet, format, srs, style, maxZoom, prefix } = props
+const { url, layer, matrixSet, srs, version, format, style, maxZoom, prefix, token } = props
 
 const map = inject('map')
 const projection = getProjection(srs || 'EPSG:4326')
@@ -41,27 +42,36 @@ const tileGrid = new WMTSTileGrid({
 
 const wmts = new WMTS({
   url,
-  layer: layerName,
+  layer: layer,
+  version: version || '1.0.0',
   matrixSet,
   format: format || 'image/png',
   style: style || 'default',
   projection: projection,
-  tileGrid: tileGrid
+  tileGrid: tileGrid,
+  tileLoadFunction(tile, src) {
+    if(token) {
+      tile.getImage().src = src + '&tk=' + token
+    } else {
+      tile.getImage().src = src
+    }
+    
+  },
 })
 
-const layer = new TileLayer({
+const layerObj = new TileLayer({
   source: wmts,
 })
 
 onMounted(() => {
   if (map) {
-    map.addLayer(layer)
+    map.addLayer(layerObj)
   }
 })
 
 onUnmounted(() => {
-  if (map && map.getLayers().getArray().includes(layer)) {
-    map.removeLayer(layer)
+  if (map && map.getLayers().getArray().includes(layerObj)) {
+    map.removeLayer(layerObj)
   }
 })
 
@@ -88,7 +98,7 @@ function getFeatureInfoByCoordinate(coordinate) {
 
 defineExpose({
   wmts,
-  layer,
+  layerObj,
   getFeatureInfoByCoordinate,
 })
 </script>
