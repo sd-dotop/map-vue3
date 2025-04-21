@@ -47,12 +47,18 @@ function setCenter(lnglat) {
   view.setCenter(lnglat)
 }
 function getFeatureByPixel(pixel) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
+    let found = false; // 标记是否找到特征
     map.forEachFeatureAtPixel(pixel, (feature) => {
-      resolve(feature)
-    })
-  })
+      found = true; // 找到特征，设置标记为true
+      resolve(feature); // 解决Promise
+    });
+    if (!found) {
+      reject(new Error('No feature found at pixel')); // 如果没有找到特征，拒绝Promise
+    }
+  });
 }
+
 
 if (props.singleClick) {
   map.on('singleclick', props.singleClick)
