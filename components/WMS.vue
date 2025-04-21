@@ -8,20 +8,24 @@ import axios from 'axios'
 const props = defineProps({
   url: String,
   params: Object,
+  properties: {
+    type: Object,
+    default: () => ({}),
+  },
 })
 
-const { url, params } = props
+const { url, params, properties } = props
 
 const map = inject('map')
-
-const layer = new TileLayer()
 
 const wms = new TileWMS({
   url,
   params,
 })
-
-layer.setSource(wms)
+const layer = new TileLayer({
+  source: wms,
+  ...properties,
+})
 
 onMounted(() => {
   map.addLayer(layer)
