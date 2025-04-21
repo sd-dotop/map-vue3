@@ -187,6 +187,7 @@ WMS 瓦片服务图层
 | ------ | ------ | ------ | ------------ |
 | url    | String | -      | wms 服务地址 |
 | params | Object | -      | wms 请求参数 |
+| properties | Object | -      | wms tileLayer自定义属性 |
 
 #### expose
 
