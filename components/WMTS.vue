@@ -17,20 +17,21 @@ const props = defineProps({
   version: String,
   format: String,
   style: String,
+  minZoom: Number,
   maxZoom: Number,
   prefix: String, // 瓦片 matrixIds 前缀
   token: String, // 令牌
 })
 
-const { url, layer, matrixSet, srs, version, format, style, maxZoom, prefix, token } = props
+const { url, layer, matrixSet, srs, version, format, style, minZoom, maxZoom, prefix, token } = props
 
 const map = inject('map')
 const projection = getProjection(srs || 'EPSG:4326')
 const projectionExtent = projection.getExtent() || [-180, -90, 180, 90]
 const tileSizeMtrs = getWidth(projectionExtent) / 256
-const resolutions = new Array(maxZoom)
-const matrixIds = new Array(maxZoom)
-for (let z = 0; z < maxZoom; ++z) {
+const resolutions = new Array()
+const matrixIds = new Array()
+for (let z = minZoom; z < maxZoom; ++z) {
   resolutions[z] = tileSizeMtrs / Math.pow(2, z)
   matrixIds[z] = prefix && prefix + z || z;
 }
@@ -47,7 +48,7 @@ const wmts = new WMTS({
   matrixSet,
   format: format || 'image/png',
   style: style || 'default',
-  projection: projection,
+  // projection: projection,
   tileGrid: tileGrid,
   tileLoadFunction(tile, src) {
     if(token) {
