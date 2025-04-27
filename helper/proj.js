@@ -6,11 +6,7 @@ import { get as getProjection } from 'ol/proj'
 
 export function initEPSG4490() {
   const projection = getProjection('EPSG:4490')
-  console.log('projection', projection)
   if (projection) {
-    console.log('Projection EPSG:4490 is registered.')
-    const projectionExtent = projection.getExtent() || [-180, -90, 180, 90]
-    console.log('projectionExtent', projectionExtent)
     return
   }
   
