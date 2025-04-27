@@ -7,7 +7,11 @@ import TileLayer from 'ol/layer/Tile'
 import WMTS from 'ol/source/WMTS'
 import WMTSTileGrid from 'ol/tilegrid/WMTS'
 import { get as getProjection } from 'ol/proj'
+import { initEPSG4490 } from '../helper/proj'
+
 import axios from 'axios'
+
+initEPSG4490();
 
 const props = defineProps({
   url: String,
