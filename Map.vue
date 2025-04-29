@@ -20,6 +20,10 @@ const props = defineProps({
     type: Number,
     default: 10,
   },
+  loadingDefaultLayers: {
+    type: Boolean,
+    default: true,
+  },
   singleClick: Function,
   contextMenu: Function,
 })
@@ -28,7 +32,13 @@ const view = new View({
   projection,
   center: props.center,
   zoom: props.zoom,
+  smoothResolutionConstraint: false, // 禁用平滑缩放
 })
+
+if (!props.loadingDefaultLayers) {
+  vecLayer.getLayers().clear();
+  imgLayer.getLayers().clear();
+}
 
 const map = new Map({
   view,
@@ -53,9 +63,10 @@ function getFeatureByPixel(pixel) {
       found = true; // 找到特征，设置标记为true
       resolve(feature); // 解决Promise
     });
-    if (!found) {
-      reject(new Error('No feature found at pixel')); // 如果没有找到特征，拒绝Promise
-    }
+    // if (!found) {
+    //   console.warn('No feature found at pixel. This error is an message, not affect operation.'); // 如果没有找到特征，打印警告
+    //   reject(null); // 如果没有找到特征，拒绝Promise
+    // }
   });
 }
 
