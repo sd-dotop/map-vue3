@@ -1,6 +1,6 @@
 <template></template>
 <script setup>
-import { inject, onMounted, onUnmounted } from 'vue'
+import { inject, onMounted, onUnmounted, watch } from 'vue'
 import TileLayer from 'ol/layer/Tile'
 import TileWMS from 'ol/source/TileWMS'
 import axios from 'axios'
@@ -35,7 +35,13 @@ onUnmounted(() => {
   map.removeLayer(layer)
 })
 
-function getFatureInfoByCoodinate (coordinate) {
+watch(() => props.params, (newParams) => {
+  newParams.VIEWPARAMS = newParams.VIEWPARAMS || null;
+  console.log('newParams', newParams)
+  wms.updateParams(newParams)
+})
+
+function getFatureInfoByCoodinate(coordinate) {
   return new Promise((resolve, reject) => {
     const url = wms.getFeatureInfoUrl(coordinate, map.getView().getResolution(), params.srs || params.SRS, {
       INFO_FORMAT: params.info_format || params.INFO_FORMAT || 'application/json',
