@@ -20,6 +20,14 @@ const props = defineProps({
     type: Number,
     default: 10,
   },
+  minZoom: {
+    type: Number,
+    default: 0,
+  },
+  maxZoom: {
+    type: Number,
+    default: 19,
+  },
   loadingDefaultLayers: {
     type: Boolean,
     default: true,
@@ -32,6 +40,8 @@ const view = new View({
   projection,
   center: props.center,
   zoom: props.zoom,
+  minZoom: props.minZoom,
+  maxZoom: props.maxZoom,
   smoothResolutionConstraint: false, // 禁用平滑缩放
 })
 
