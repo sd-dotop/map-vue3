@@ -30,13 +30,13 @@ export function measure(map, type) {
         color: 'rgba(255, 255, 255, 0.2)',
       }),
       stroke: new Stroke({
-        color: '#ffcc33',
+        color: '#1E90FF',
         width: 4,
       }),
       image: new CircleStyle({
         radius: 7,
         fill: new Fill({
-          color: '#ffcc33',
+          color: '#1E90FF',
         }),
       }),
     }),
@@ -47,6 +47,7 @@ export function measure(map, type) {
     if (feature) {
       helpMsg = '双击结束测量'
     }
+    helpTooltipElement.classList.add('helper-tip')
     helpTooltipElement.innerHTML = helpMsg
     helpTooltip.setPosition(ev.coordinate)
     helpTooltipElement.classList.remove('hidden')
@@ -54,6 +55,7 @@ export function measure(map, type) {
 
   map.getViewport().addEventListener('mouseout', function () {
     helpTooltipElement.classList.add('hidden')
+    helpTooltipElement.classList.remove('helper-tip')
   })
 
   draw = new Draw({

@@ -10,6 +10,7 @@
 // import { Polygon } from 'ol/geom';
 import Draw from 'ol/interaction/Draw'
 import Overlay from 'ol/Overlay'
+import Feature from 'ol/Feature'
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style'
 import { LineString, Polygon } from 'ol/geom'
 // import { Vector as VectorSource } from 'ol/source'
@@ -22,12 +23,13 @@ import { unByKey } from 'ol/Observable'
 
 let draw = null
 let source = null
-export function drawPolygon(map,color,color_,callback) {
-  if(source){
-   source.clear()
-   map.removeInteraction(draw)
+export function drawPolygon(map, color, color_, initialCoordinates = null, callback) {
+  if(source) {
+    source.clear();
+    map.removeInteraction(draw);
   }
-  source = new VectorSource()
+  
+  source = new VectorSource();
   const vector = new VectorLayer({
     source: source,
     style: new Style({
@@ -47,21 +49,33 @@ export function drawPolygon(map,color,color_,callback) {
     })
   });
   map.addLayer(vector);
- 
+
+  // 如果有初始坐标，直接创建多边形
+  if (initialCoordinates) {
+    const polygon = new Polygon(initialCoordinates);
+    const feature = new Feature({
+      geometry: polygon
+    });
+    source.addFeature(feature);
+  }
+  if (!callback) {
+    return;
+  }
+
   draw = new Draw({
     source: source,
     type: 'Polygon'
   });
-  map.addInteraction(draw)
-  draw.on("drawend", (evt)=> {
+  map.addInteraction(draw);
+  
+  draw.on("drawend", (evt) => {
     const geo = evt.feature.getGeometry();
     const t = geo.getType();
     if (t === "Polygon") {
-      // 获取坐标点
       const points = geo.getCoordinates();
-      console.warn(points, "绘制结束，点坐标")
-      map.removeInteraction(draw); // 移除绘制
-      callback(points)
+      console.warn(points, "绘制结束，点坐标");
+      map.removeInteraction(draw);
+      callback(draw, source, points);
     }
   });
 }

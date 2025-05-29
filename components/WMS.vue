@@ -15,7 +15,16 @@ const props = defineProps({
 })
 
 const { url, params, properties } = props
-
+if (params.VIEWPARAMS) {
+  const validParams = params.VIEWPARAMS
+    .split(';')
+    .filter(pair => {
+      const [, value] = pair.split(':');
+      return value !== 'null';
+    });
+    const vp = validParams.length > 0 ? validParams.join(';') : undefined;
+    params.VIEWPARAMS = vp;
+}
 const map = inject('map')
 
 const wms = new TileWMS({
@@ -36,8 +45,16 @@ onUnmounted(() => {
 })
 
 watch(() => props.params, (newParams) => {
-  newParams.VIEWPARAMS = newParams.VIEWPARAMS || null;
-  console.log('newParams', newParams)
+  if (newParams.VIEWPARAMS) {
+    const validParams = newParams.VIEWPARAMS
+      .split(';')
+      .filter(pair => {
+        const [, value] = pair.split(':');
+        return value !== 'null';
+      });
+      const vp = validParams.length > 0 ? validParams.join(';') : undefined;
+      newParams.VIEWPARAMS = vp || null;
+  }
   wms.updateParams(newParams)
 })
 
